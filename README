@@ -1,0 +1,25 @@
+ActsAsLookUp
+============
+
+A simple way to manage look up information for your application.  This is opiniated, the only values it can insert in a field are text, if you think you should be putting in numeric values, then don't use this plugin.
+
+Example
+=======
+
+In the model, put:
+
+class YourModel < ActiveRecord::Base
+
+has_lookup :your_field
+
+This will create the database entries for the look up field and create a custom validation so that only entries in the look_up_entries for the field can be
+created.
+
+In the view, put:
+
+<%= f.select_from_lookup :your_field %>
+
+You'll also need to create a nested route controller for managing the look ups, with a route like look_up_fields/4/look_up_items.  You can use the scriptaculous sortable structure to allow the operator to reorder each look up list.
+
+
+Copyright (c) 2010 Richard Nicholas, released under the MIT license

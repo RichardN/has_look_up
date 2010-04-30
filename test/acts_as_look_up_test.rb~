@@ -1,0 +1,31 @@
+require File.dirname(__FILE__) + '/test_helper.rb' 
+require File.dirname(__FILE__) + '/../lib/acts_as_lookup'
+# Here's the helper file we need
+
+require 'action_view/helpers/form_options_helper'
+
+
+class ActsAsLookUpTest < Test::Unit::TestCase
+  load_schema
+
+  include ActionView::Helpers::FormOptionsHelper
+  include ActsAsLookUp
+
+
+  class Dog < ActiveRecord::Base
+  end
+
+  class Cat < ActiveRecord::Base
+  end
+
+  def setup
+    load_schema
+    load_fixtures
+  end
+
+  def test_empty_select
+    Cat.has_lookup :purr
+    assert_equal "<select></select>", look_up_select :purr
+  end
+
+end

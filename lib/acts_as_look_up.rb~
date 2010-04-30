@@ -1,0 +1,34 @@
+# ActsAsLookUp
+module HasLookUp
+
+  def self.included(base)
+    base.extend ClassMethods
+  end
+
+  module ClassMethods
+    def has_look_up( *field_or_fields )
+      include ActsAsLookUp::InstanceMethods
+      field_or_fields.each do |f|
+        if self.column_names.include?( f.to_s )
+          LookUpField.find_or_create_by_for_table_and_for_field( self.table_name, f.to_s )
+        else
+          raise ActiveRecord::UnknownAttributeError, "Column not found", caller
+        end
+      end
+    end
+  end
+
+  module InstanceMethods
+    # Add instance methods here
+  end
+end
+
+ActiveRecord::Base.send(:include, HasLookUp)
+
+%w{ models }.each do |dir|
+  path = File.join(File.dirname(__FILE__), 'app', dir)  
+  $LOAD_PATH << path
+  ActiveSupport::Dependencies.load_paths << path 
+  ActiveSupport::Dependencies.load_once_paths.delete(path)
+end 
+

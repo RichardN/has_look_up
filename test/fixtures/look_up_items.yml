@@ -1,0 +1,34 @@
+<% 
+  def auto_increment
+    @id = ( @id || 0 ) + 1
+  end
+%>
+woof:
+  id: <%= auto_increment %>
+  look_up_text: woof
+  look_up_field_id: 1
+  position: 3
+growl:
+  id: <%= auto_increment %>
+  look_up_text: growl
+  look_up_field_id: 1
+  position: 2
+yap:
+  id: <%= auto_increment %>
+  look_up_text: yap
+  look_up_field_id: 1
+  position: 1
+nip:
+  id: <%= auto_increment %>
+  look_up_text: nip
+  look_up_field_id: 2
+  position: 1
+scar:
+  id: <%= auto_increment %>
+  look_up_text: scar
+  look_up_field_id: 2
+  position: 2
+
+
+
+  

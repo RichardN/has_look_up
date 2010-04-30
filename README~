@@ -1,0 +1,21 @@
+ActsAsLookUp
+============
+
+A simple way to manage look up information for your application.  This is opiniated, the only values it can insert are text, if you think you should be
+putting in numeric values, then you shouldn't be using this app as the architecture (using a single table for all the lookup information) is not
+suited to adding extra information to the table.
+
+
+Example
+=======
+
+In the model, put:
+
+has_lookup :the_field
+
+In the view, put:
+
+<%= f.select_from_lookup :the_field %>
+
+
+Copyright (c) 2010 Richard Nicholas, released under the MIT license
